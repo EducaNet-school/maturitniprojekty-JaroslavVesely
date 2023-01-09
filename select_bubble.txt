@@ -1,0 +1,45 @@
+function selection(&$arr)
+{
+    $len = count($arr);
+    for($i = 0; $i < $len ; $i++)
+    {
+        $low = $i;
+        for($x = $i + 1; $x < $len ; $x++)
+        {
+            if ($arr[$x] < $arr[$low])
+            {
+                $low = $x;
+            }
+        }
+         
+        if ($arr[$i] > $arr[$low])
+        {
+            $tmp = $arr[$i];
+            $arr[$i] = $arr[$low];
+            $arr[$low] = $tmp;
+        }
+    }
+}
+
+$arr = array(64, 25, 12, 22, 11);
+$len = count($arr);
+selection($arr, $len);
+echo "Sorted array : \n";
+ 
+for ($i = 0; $i < $len; $i++)
+    echo $arr[$i] . " ";
+
+
+
+function bubble($arr) {
+    $size = count($arr)-1;
+    for ($i=0; $i<$size; $i++) {
+        for ($j=0; $j<$size-$i; $j++) {
+            $k = $j+1;
+            if ($arr[$k] < $arr[$j]) {
+                list($arr[$j], $arr[$k]) = array($arr[$k], $arr[$j]);
+            }
+        }
+    }
+    return $arr;
+} 
