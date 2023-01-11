@@ -1,0 +1,106 @@
+<html lang="cs">
+    <head>
+        <style>
+            
+            #wel{
+                margin: auto;
+                width: 500px;
+                height: 500px;
+            }
+            .fel{
+                margin: auto;
+                text-align: center;
+                display: grid;
+                width: 500px;
+                height: 500px;
+                align-content: center;
+                align-items: center;
+                background: linear-gradient(208deg, rgba(34,35,195,1) 0%, rgba(46,253,45,1) 100%);
+                position: relative;
+                box-shadow: inset 1px 1px 5px 0px black;
+                top: 25%;
+                border-radius: 15px;
+
+
+            }
+            textarea{
+                width: 400px;
+                height: 200px;
+                margin: auto;
+                resize: none;
+                border-radius: 15px;
+                box-shadow: 1px 1px 5px 0px black;
+                
+            }
+            .mass{
+                margin: auto;
+                border-radius: 15px;
+                text-align: center;
+                box-shadow: 1px 1px 5px 0px black;
+            }
+            .weak{
+                margin:auto;
+                height: 50px;
+                width: 100px;
+                border-radius: 15px;
+                box-shadow: 1px 1px 5px 0px black;
+            }
+            .weak:hover{
+                cursor: pointer;
+                background: darkslategrey;
+            }
+        </style>
+        <link rel="stylesheet" href="index_styles.css" />
+        <title>DnD</title>
+    </head>
+    <body id="wel">
+        <form method="post" class="fel" onSubmit="console.log(verif(this));">
+            <label for="name"><strong>Celé Jméno</strong><br></label>
+            <input class="mass" name="name" id="name" type="text"><br>
+            <label for="adress"><strong>Adresa</strong><br></label>
+            <textarea id="adress" name="adress" placeholder="Tvoje Adresa"></textarea><br>
+            <input class="weak" type="submit" name="submit" value="SEND">
+        </form>
+    </body>
+
+
+<script>
+function verif(f)
+{
+
+var control = /[`!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?~]/i;
+if(control.test(f.name.value)){
+alert("Nepovolené Znaky");
+return false;
+}
+
+if(f.name.value === ''){
+alert("Nevyplněné jméno");
+return false;
+}
+
+if(f.name.value === ''){
+alert("Nevyplněné jméno");
+return false;
+}
+
+if(!f.adress.value){
+alert("bydlíš pod mostem?");
+return false;
+}
+
+if(!hasWhiteSpace(f.name.value)){
+alert("není přijmení?");
+return false;
+}
+
+
+return confirm("Vše v Pořádku");
+} 
+
+
+function hasWhiteSpace(s) {
+  return s.indexOf(' ') >= 0;
+}
+
+</script>
