@@ -1,0 +1,134 @@
+class pac{
+    public $name;
+    private $age;
+    private $reason;
+
+public function __construct($name, $age, $reason){
+    $this->name = $name;
+    $this->age = $age;
+    $this->reason = $reason;
+}
+public function why() {
+    return $this->reason;
+}
+public function who(){
+    return $this->name;
+}
+public function how(){
+    return $this->age;
+}
+
+
+public function medicalThing($secondOne){
+    if($this->reason === "očkování"){
+        if($secondOne->reason !== "očkování"){
+            return 1;
+        }
+        else{
+            return 0;
+        }
+    }
+    else {
+        return 0;
+        
+    }
+}
+
+public function ageThing($secondOne){
+    if($this->age <= 5){
+        if($this->age >= $secondOne->age){
+            return 0;
+        }
+        else{
+            return 1;
+        }
+    }
+    else {
+        return 0;
+        
+    }
+}
+
+
+ public function administration($secondOne){
+    
+if($this->medicalThing($secondOne)  === 1){
+    return 1;
+}
+if($this->ageThing($secondOne)  === 1){
+    if($secondOne->how() <= 5 ){
+        return 0;
+    }
+    else{
+        return 1;
+    } 
+}
+else{
+    return 0;
+}
+}
+
+}
+
+class Cekarna{
+    private $fronta = [];
+
+
+
+public function welcome($someoneNew){
+    array_push($this->fronta, $someoneNew);
+}
+
+
+public function waitime(){
+    $x = 0;
+    $z = count($this->fronta);
+    while($x < $z){
+    echo $x . $this->fronta[$x]->who().'<br>';
+    $x++;
+    }
+}
+public function mainCheck() {
+    $x = 0;
+    $k = 0;
+    $z = count($this->fronta);
+        for($x=0;$x<$z;){
+            if($k === $z){
+                if($k === $z && $k === $x){
+                }
+                else{
+                $x++;
+                $k = 0;
+                }
+            }
+            if ($this->fronta[$x]->ageThing($this->fronta[$k]) === 1){
+                 [$this->fronta[$x], $this->fronta[$k]] = [$this->fronta[$k], $this->fronta[$x]];
+            }
+            $k++;
+            
+        }
+}
+   
+
+
+}
+
+
+$alice = new pac("Alice", 5, "očkování");
+$mark = new pac("Marek", 30, "chřipka");
+$sam = new pac("Stefanie", 19, "očkování");
+$zephyr = new pac("Zephyr", 3, "generic výmluva");
+$hades = new pac("Hades", 90, "očkování");
+$helena = new pac("Helena", 6, "očkování");
+
+$walkie = new Cekarna();
+$walkie->welcome($alice);
+$walkie->welcome($mark);
+$walkie->welcome($sam);
+$walkie->welcome($zephyr);
+$walkie->welcome($hades);
+$walkie->welcome($helena);
+
+echo $walkie->waitime();
+echo $hades->medicalThing($alice);
+echo $walkie->mainCheck();
