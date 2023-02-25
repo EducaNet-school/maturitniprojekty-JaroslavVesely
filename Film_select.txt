@@ -1,0 +1,1 @@
+CREATE VIEW pocetHercu as (f.nazev sum(b.id) b.herciid, b.filmid select from film f inner join b2 b on h.id = b.filmyid)
